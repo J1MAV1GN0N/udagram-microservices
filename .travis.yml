@@ -18,8 +18,8 @@ script:
   - docker tag udagram-restapi-user philchrist/udagram-restapi-user:latest
   - docker build -t udagram-frontend .
   - docker tag udagram-frontend philchrist/udagram-frontend:latest
-  - docker build -t udagram-reversproxy .
-  - docker tag udagram-reverspoxy philchrist/udagram-reversepoxy:latest
+  - docker build -t udagram-reverseproxy .
+  - docker tag udagram-reversepoxy philchrist/udagram-reversepoxy:latest
   - echo "done"
 
 
