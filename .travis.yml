@@ -5,23 +5,47 @@ node_js:
 services:
   - docker
 
+env:
+  - DOCKER_COMPOSE_VERSION=1.28.2
+
+before_install:
+  - docker -v && docker-compose -v
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+  - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+  - chmod +x ./kubectl
+  - sudo mv ./kubectl /usr/local/bin/kubectl  
+
 # Pre-testing installs
 install:
-  - echo "nothing needs to be installed"
+  - docker-compose -f udagram-deployment/docker/docker-compose-build.yml build --parallel
 
 # Scripts to be run such as tests
 before_script:
   - echo "no tests"
 
+# Tasks to perform after the process is successful. Building docker images.
 script:
   - docker --version # print the version for logging
-  - docker build -t udagram-microservices .
-  - docker tag udagram-microservices philchrist/udagram-microservices:latest
+  - docker build -t udagram-restapi-feed .
+  - docker tag udagram-restapi-feed philchrist/udagram-restapi-feed:latest
+  - docker build -t udagram-restapi-user .
+  - docker tag udagram-restapi-user philchrist/udagram-restapi-user:latest
+  - docker build -t udagram-frontend .
+  - docker tag udagram-frontend philchrist/udagram-frontend:latest
+  - docker build -t udagram-reversproxy .
+  - docker tag udagram-reverspoxy philchrist/udagram-reversepoxy:latest
+  - echo "done"
+
 
 # Tasks to perform after the process is successful. Formatting the Docker username and password as below enables you to programmatically log in without having the password exposed in logs.
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push philchrist/udagram-microservices
-
+  - docker push philchrist/udagram-restapi-feed
+  - docker push philchrist/udagram-restapi-user
+  - docker push philchrist/udagram-frontend
+  - docker push philchrist/udagram-reversepoxy
 
 
