@@ -1,3 +1,7 @@
 udagram-deployment/docker/.env
 .travis.yml
 set_env.sh
+/udagram-deployment/k8s/env-secret.yaml
+/udagram-deployment/k8s/env-configmap.yaml
+/udagram-deployment/k8s/aws-secret.yaml
+
