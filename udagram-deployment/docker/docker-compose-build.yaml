@@ -11,7 +11,7 @@ services:
   backend_feed:
     build:
       context: ../../udagram-backend-feed
-    image: philchrist/udagran-feed
+    image: philchrist/udagram-feed
   frontend:
     build:
       context: ../../udagram-frontend  
