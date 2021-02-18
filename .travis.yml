@@ -4,11 +4,7 @@ node_js:
 
 services:
   - docker
-
-# Scripts to be run such as tests
-before_script:
-  - echo "no tests"
-
+  
 env:
   - DOCKER_COMPOSE_VERSION=1.25.5
 
@@ -21,22 +17,12 @@ before_install:
   - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
   - chmod +x ./kubectl
   - sudo mv ./kubectl /usr/local/bin/kubectl
-  - mkdir ${HOME}/.kube
-  - echo "$KUBE_CONFIG" | base64 --decode > ${HOME}/.kube/config # include to travis console env variable :cat ${HOME}/.kube/config | base64 | pbcopy
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin # set Docker username and password in Travis console
-  - echo "dockerhub credentials configured"
 
 # Building docker images.
 install:
   - docker-compose -f udagram-deployment/docker/docker-compose-build.yml build --parallel
   - docker-compose -f udagram-deployment/docker/docker-compose-build.yaml push
 
-# Tasks to perform after the process is successful. 
 script:
-  - kubectl get pods
-  - kubectl set image deployments/backend-feed backend-feed=philchrist/udagram-feed:latest
-  - kubectl set image deployments/backend-user backend-user=philchrist/udagram-user:latest
-  - kubectl set image deployments/frontend frontend=philchrist/udagram-frontend:latest
-  - kubectl set image deployments/reverseproxy reverseproxy=philchrist/reverseproxy:latest
-
+  - echo "done"
 
