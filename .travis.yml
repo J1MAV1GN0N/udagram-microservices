@@ -21,6 +21,7 @@ before_install:
 # Building docker images.
 install:
   - docker-compose -f udagram-deployment/docker/docker-compose-build.yaml build --parallel
+  - docker-compose -f udacity-deployment/docker/docker-compose-build.yaml push
 
 script:
   - echo "done"
