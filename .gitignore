@@ -1,8 +1,14 @@
-udagram-deployment/docker/.env
-.travis.yml
-set_env.sh
-/udagram-deployment/k8s/env-secret.yaml
-/udagram-deployment/k8s/env-configmap.yaml
-/udagram-deployment/k8s/aws-secret.yaml
+/mnt/c/Users/admin/Dev/udagram-microservices/udagram-deployment/k8s/env-configmap.yaml
+udagram-deployment/k8s/env-configmap.yaml
 
+/mnt/c/Users/admin/Dev/udagram-microservices/udagram-deployment/k8s/env-secret.yaml
 udagram-deployment/k8s/env-secret.yaml
+
+/mnt/c/Users/admin/Dev/udagram-microservices/udagram-deployment/k8s/aws-secret.yaml
+udagram-deployment/k8s/aws-secret.yaml
+
+/mnt/c/Users/admin/Dev/udagram-microservices/.env
+.env
+
+/mnt/c/Users/admin/Dev/udagram-microservices/udagram-deployment/docker/.env
+udagram-deployment/docker/.env
