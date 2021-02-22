@@ -7,6 +7,6 @@ data:
   JWT_SECRET: hello
   POSTGRES_DB: udagrammicrodb
   POSTGRES_HOST: udagrammicrodb.ceuvfgz3f323.eu-central-1.rds.amazonaws.com
-  URL: http://localhost:8100
+  URL: http://a0bc95e811625419f96a4743d7d1f64b-1876149687.eu-central-1.elb.amazonaws.com:8100
 metadata:
   name: env-config
