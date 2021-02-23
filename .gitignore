@@ -12,3 +12,4 @@ udagram-deployment/k8s/aws-secret.yaml
 
 /mnt/c/Users/admin/Dev/udagram-microservices/udagram-deployment/docker/.env
 udagram-deployment/docker/.env
+udagram-deployment/docker/.env
